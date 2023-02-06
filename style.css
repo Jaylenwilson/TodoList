@@ -8,6 +8,10 @@ Writing comments is important, So that new learners can easily understand
     margin: 0;
 }
 
+/* Giving the body a display of flex and flex-direction of column so elements will stack on top of eachother 
+Setting the min-height of the page to be 100vh so it can grow if it needs to
+*/
+
 body {
     display: flex;
     flex-direction: column;
@@ -16,6 +20,10 @@ body {
     background-color: rgb(29, 58, 27);
 }
 
+/* Styling the header to always be center using padding and margin:auto which allows me to horizontally center elements
+by setting auto margin to an element that has a defined width like the header element below
+*/
+
 header {
     padding: 2rem 1rem;
     max-width: 800px;
@@ -23,17 +31,25 @@ header {
     margin: 0 auto;
 }
 
+/* Using the descendent operator to target all h1 elements that are a child of a header element 
+Giving those h1 elements a font-size of 2.5rem which is equivelent to 40px using the rem measurement over px is for accessibility because px for some browsers doesnt resize
+Giving the h1 element a margin of bottom to seperate it from the content below
+Giving the h1 a font-weight of 300 in order to make the font size bold
+*/
+
 header h1 {
     font-size: 2.5rem;
     font-weight: 300;
     margin-bottom: 1rem;
     color: green;
 }
-
+/* allows the child elements of the form element element to align like columns or rows */
 #newtaskform {
     display: flex;
 }
 
+/* using the or selector to set the appearnce of all elements that match any selector in the list to none as well as border, outline, and background*/
+/* I did this to make sure the edit, delete, and add new task button didnt have any styles that are applied to buttons by default */
 input, button {
     appearance: none;
     border: none;
@@ -41,6 +57,12 @@ input, button {
     background: none;
 }
 
+/* Flex shorthand for flex-grow determines how much of the remaining space an element will take in the flex container
+flex-shrink set to 1 to cause the element shrink when all flex items are larger than flex-container
+flex-basis set to 0% so the item can grow or shrink from the initial flex-basis
+I then uses padding to create more space inside of the task input a border radius to round the edges of the input and margin right to create space between
+the element to the right of it
+*/
 .newtaskinput {
     flex: 1 1 0%;
     background-color: darkgreen;
@@ -49,6 +71,11 @@ input, button {
     margin-right: 1rem;
     font-size: 1.25rem;
 }
+
+/* Gave the submit btn a background of transparent in order to remove the default background and a background image of linear gradient which I used in tandem with
+webkit background and webkit fill which allows me to put the linear gradient inside the text of the submit button instead of the background of the button
+Also added a transition in order to have a smooth animation affect when the button is hovered in the style below this one
+*/
 
 #tasksubmit {
     background-color: transparent;
@@ -61,25 +88,29 @@ input, button {
     transition: 0.42;
 }
 
+/* Made the opacity of the submit button lighter in order to create a fade affect when the button is hovered */
+
 #tasksubmit:hover {
     opacity: 0.8;
 }
 
+/* Made the opacity of the submit button lighter in order to create a fade affect when the button is hovered*/
 #tasksubmit:active {
     opacity: 0.6;
 }
-
+/* Used flex so the main section of the page will grow & shrink according to the page size */
 main {
     flex: 1 1 0%;
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
 }
-
+/* This is the container that holds all of the elements displaying the new task  */
 .tasklist {
     padding: 1rem;
 }
 
+/* all h2s inside of the tasklist will have a font-size of 1.5rem a boldness of 300 and 1rem of space below them in order to create some spacing between it */
 .tasklist h2 {
 font-size: 1.5;
 font-weight: 300;
@@ -87,6 +118,11 @@ color: green;
 margin-bottom: 1rem;
 }
 
+/* Gave the  divs with the class of task that are inside or descedants of divs with an id of tasks a display of flex so I could use justify-content: space-between
+to create space between the elements inside(two divs with classes content and buttons) and to display the horizontally side by side
+also used padding to create more space inside the div which gives it a much better look
+I used border-radus to round the edges of the element and marin-bottom to create space below each
+*/
 #tasks .task {
     display: flex;
     justify-content: space-between;
@@ -95,7 +131,7 @@ margin-bottom: 1rem;
     border-radius: 1rem;
     margin-bottom: 1rem;
 }
-
+/* Created the styling fot the input with the class of text which is a descendent of the elements listed which holds the task details for description */
 #tasks .task .content .text {
     color: white;
     font-size: 1.125;
@@ -104,14 +140,12 @@ margin-bottom: 1rem;
     transition: 0.4s;
 }
 
+/* uses the :not psuedo class to say if the input that is a descendant of the elements listed does not have the read only attribute change the text color to yellow */
 #tasks .task .content .text:not(:read-only) {
     color: yellow;
 }
 
-#tasks .task .actions {
-    display: flex;
-    margin: 0 -0.5rem;
-}
+/* Styled the buttons that are inside the listed elements */
 
 .task .buttons button {
     cursor: pointer;
@@ -122,21 +156,24 @@ margin-bottom: 1rem;
     transition: 0.4s;
 }
 
-
+/* created a fade affect when the button is hovered */
 .task .buttons button:hover {
     opacity: 0.8;
 }
 
+/* created a fade affect when the button is clicked */
 .task .buttons button:active {
     opacity: 0.6;
 }
 
+/* styled the edit button to have a linear gradient */
 .task .buttons .edit {
     background-image: linear-gradient(to right, darkgreen, yellow);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+/* styled the delete button to have a color of crimson red */
 .task .buttons .delete {
     color: crimson;
 }
