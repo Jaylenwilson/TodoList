@@ -2,15 +2,33 @@
 // 2. create an event listener for the add task input and get its current value
 // 3. when there is a value for the input create a 
 
+
 window.addEventListener('load', () => {
     const form = document.querySelector("#newtaskform")
     const input = document.querySelector(".newtaskinput")
     const list_el = document.querySelector("#tasks")
 
+
+    let taskitems = JSON.parse(localStorage.getItem("tasks")) || []
+
+
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const task = input.value
+
+        const todo = {
+            content: e.target.elements.content.value,
+            done: false,
+            createdAt: new Date().getTime()
+        }
+
+        taskitems.push(todo)
+
+        localStorage.setItem("taskitems", JSON.stringify(taskitems));
+
+        e.target.reset()
 
         if (!task) {
             alert("Fill in")
@@ -41,6 +59,8 @@ window.addEventListener('load', () => {
         btns.classList.add("buttons")
 
         task_el.appendChild(btns)
+        taskitems.push(task_el)
+        console.log(taskitems)
 
         const editBtn = document.createElement("button")
         editBtn.classList.add("edit")
@@ -73,5 +93,6 @@ window.addEventListener('load', () => {
             list_el.removeChild(task_el)
         })
     })
+    window.localStorage.setItem("tasks", JSON.stringify(taskitems))
 })
 
